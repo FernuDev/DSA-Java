@@ -69,7 +69,9 @@ public class LinkedList {
     }
 
     public Node removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         Node temp = head;
         if (size == 1) {
             head = tail = null;
@@ -94,6 +96,37 @@ public class LinkedList {
             current = current.next;
         }
         System.out.println(">");
+    }
+
+    public Node get(int index){
+        if (index < 0 || index >= size){
+            return null;
+        }
+
+        Node current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        return current;
+    }
+
+    public boolean set(int index, int value){
+        Node temp = get(index);
+        if (temp != null){
+            temp.value = value;
+            return true;
+        }
+        return false;
+    }
+
+    // TODO: Resolver el problema
+    public Node deleteDuplicates(){
+        return head;
+    }
+
+    public boolean isEmpty(){
+        return size == 0;
     }
 
     public void getHead() {

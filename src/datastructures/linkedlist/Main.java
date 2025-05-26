@@ -8,8 +8,11 @@ public class Main {
         list.append(33);
         list.append(44);
 
-        list.removeFirst();
+        list.printList();
+        System.out.println("Node at [1]: " + list.get(1).value);
 
+        // Probando la implementación del metodo set
+        list.set(0, 45);
         list.printList();
     }
 }
