@@ -29,7 +29,11 @@ public class LinkedList {
 
     public void append(int value){
         Node newNode = new Node(value);
-        tail.next = newNode;
+        if (size == 0){
+            head = newNode;
+        } else {
+            tail.next = newNode;
+        }
         tail = newNode;
         size++;
     }
@@ -118,6 +122,36 @@ public class LinkedList {
             return true;
         }
         return false;
+    }
+
+    public boolean insert(int index, int value){
+
+        if (index < 0 || index > size){
+            return false;
+        }
+
+        if (index == 0){
+            prepend(value);
+            return true;
+        }
+
+        if (index == size){
+            append(value);
+            return true;
+        }
+
+        Node newNode = new Node(value);
+
+        Node current = head;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.next;
+        }
+
+        newNode.next = current.next;
+        current.next = newNode;
+        size++;
+
+        return true;
     }
 
     // TODO: Resolver el problema

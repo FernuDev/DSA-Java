@@ -12,7 +12,7 @@ public class Main {
         System.out.println("Node at [1]: " + list.get(1).value);
 
         // Probando la implementación del metodo set
-        list.set(0, 45);
+        list.insert(3, 55);
         list.printList();
     }
 }
