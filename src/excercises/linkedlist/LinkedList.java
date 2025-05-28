@@ -131,6 +131,50 @@ public class LinkedList {
         return current;
     }
 
+    public int binaryToDecimal(){
+
+        int size = getSize() - 1;
+        int number = 0;
+        Node current = head;
+
+        while(size >= 0) {
+            number += (int) (Math.pow(2, size) * current.value);
+            current = current.next;
+            size--;
+        }
+
+        return number;
+    }
+
+    public Node partition(Node head, int k) {
+        if (head == null) return null;
+        if (head.next == null) return head;
+
+        Node dummy1 = new Node(0);
+        Node temp1 = dummy1;
+
+        Node dummy2 = new Node(0);
+        Node temp2 = dummy2;
+
+        Node current = head;
+
+        while (current != null) {
+            if (current.value < k) {
+                temp1.next = current.next;
+                temp1 = temp1.next;
+            } else {
+                temp2.next = current.next;
+                temp2 = temp2.next;
+            }
+            current = current.next;
+        }
+
+        temp2.next = null;
+        temp1.next = dummy2.next;
+
+        return dummy1.next;
+    }
+
     private int getSize() {
         int size = 0;
         Node current = head;
@@ -142,5 +186,6 @@ public class LinkedList {
 
         return size;
     }
+
 }
 
