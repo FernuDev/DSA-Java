@@ -29,6 +29,7 @@ public class LinkedList {
 
     public void append(int value){
         Node newNode = new Node(value);
+
         if (size == 0){
             head = newNode;
         } else {
@@ -140,18 +141,51 @@ public class LinkedList {
             return true;
         }
 
+        Node temp = get(index - 1);
         Node newNode = new Node(value);
 
-        Node current = head;
-        for (int i = 0; i < index - 1; i++) {
-            current = current.next;
-        }
-
-        newNode.next = current.next;
-        current.next = newNode;
+        newNode.next = temp.next;
+        temp.next = newNode;
         size++;
 
         return true;
+    }
+
+    public Node remove(int index){
+        if (index < 0 || index > size){
+            return null;
+        }
+
+        if (index == 0){
+            return removeFirst();
+        }
+
+        if (index == size){
+            return removeLast();
+        }
+
+        Node prev = get(index - 1);
+        Node temp = prev.next;
+
+        prev.next = temp.next;
+        size--;
+        return temp;
+    }
+
+    public void reverse(){
+        Node current = head;
+        head = tail;
+        tail = current;
+
+        Node after = current.next;
+        Node before = null;
+
+        for (int i = 0; i < size; i++){
+            after = current.next;
+            current.next = before;
+            before = current;
+            current = after;
+        }
     }
 
     // TODO: Resolver el problema
