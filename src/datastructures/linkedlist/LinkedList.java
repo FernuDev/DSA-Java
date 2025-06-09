@@ -188,11 +188,6 @@ public class LinkedList {
         }
     }
 
-    // TODO: Resolver el problema
-    public Node deleteDuplicates(){
-        return head;
-    }
-
     public boolean isEmpty(){
         return size == 0;
     }
