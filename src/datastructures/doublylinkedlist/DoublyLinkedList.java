@@ -37,13 +37,16 @@ public class DoublyLinkedList {
     }
 
     public void prepend(int value) {
+        Node newNode = new Node(value);
+
         if (length == 0) {
             append(value);
+        } else {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
         }
-        Node newNode = new Node(value);
-        newNode.next = head;
-        head.prev = newNode;
-        head = newNode;
+
         length++;
     }
 
