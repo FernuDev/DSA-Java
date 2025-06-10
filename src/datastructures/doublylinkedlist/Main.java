@@ -9,7 +9,7 @@ public class Main {
         doublyLinkedList.append(5);
         doublyLinkedList.append(6);
 
-        System.out.println("Append Method: ");
+        System.out.println("\nAppend Method: ");
         doublyLinkedList.printList();
 
         // Testing removeLast method
@@ -18,7 +18,7 @@ public class Main {
         doublyLinkedList.removeLast();
         doublyLinkedList.removeLast();
 
-        System.out.println("Remove Last Method: ");
+        System.out.println("\nRemove Last Method: ");
         doublyLinkedList.printList();
 
         // Testing the prepend method
@@ -30,9 +30,13 @@ public class Main {
         // Apply to Prepend Method
         doublyLinkedList.prepend(5);
 
-        System.out.println("Prepend Method: ");
+        System.out.println("\nPrepend Method: ");
         doublyLinkedList.printList();
 
+        // Testing removeFirst Method
+        doublyLinkedList.removeFirst();
+        System.out.println("\nRemove First Method: ");
+        doublyLinkedList.printList();
 
     }
 }
