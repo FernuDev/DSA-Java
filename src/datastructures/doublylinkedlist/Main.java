@@ -38,5 +38,8 @@ public class Main {
         System.out.println("\nRemove First Method: ");
         doublyLinkedList.printList();
 
+        // Get method
+        System.out.println("Getting the 3th (2th index) element of the linked list: " + doublyLinkedList.get(2).value);
+
     }
 }

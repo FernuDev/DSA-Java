@@ -13,7 +13,6 @@ public class DoublyLinkedList {
         public Node(int value) {
             this.value = value;
         }
-
     }
 
     public DoublyLinkedList(int value) {
@@ -52,10 +51,20 @@ public class DoublyLinkedList {
 
     public Node removeFirst() {
         if (length == 0) return null;
+
         Node temp = head;
-        head = head.next;
-        head.prev = null;
+
+        if (length == 1) {
+            head = null;
+            tail = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+            temp.next = null;
+        }
+
         length--;
+
         return temp;
     }
 
@@ -74,6 +83,15 @@ public class DoublyLinkedList {
         }
 
         length--;
+        return temp;
+    }
+
+    public Node get(int index) {
+        if (index < 0 || index >= length) return null;
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
         return temp;
     }
 
