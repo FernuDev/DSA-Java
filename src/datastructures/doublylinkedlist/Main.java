@@ -31,6 +31,7 @@ public class Main {
         doublyLinkedList.prepend(5);
 
         System.out.println("\nPrepend Method: ");
+
         doublyLinkedList.printList();
 
         // Testing removeFirst Method
@@ -39,7 +40,17 @@ public class Main {
         doublyLinkedList.printList();
 
         // Get method
-        System.out.println("Getting the 3th (2th index) element of the linked list: " + doublyLinkedList.get(2).value);
+        System.out.println("\nGetting the 3th (2th index) element of the linked list: " + doublyLinkedList.get(2).value);
+
+        // Set method
+        doublyLinkedList.set(3, 10);
+        System.out.println("\nSetting the 4th element of the linked list: ");
+        doublyLinkedList.printList();
+
+        // Insert method
+        doublyLinkedList.insert(1, 5);
+        System.out.println("\nInserting 5 at 1 index: ");
+        doublyLinkedList.printList();
 
     }
 }

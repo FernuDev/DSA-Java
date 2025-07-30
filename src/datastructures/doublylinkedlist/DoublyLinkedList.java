@@ -89,10 +89,56 @@ public class DoublyLinkedList {
     public Node get(int index) {
         if (index < 0 || index >= length) return null;
         Node temp = head;
-        for (int i = 0; i < index; i++) {
-            temp = temp.next;
+        if (index < length / 2) {
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+        } else {
+            temp = tail;
+            for (int i = length - 1; i > index; i--) {
+                temp = temp.prev;
+            }
         }
         return temp;
+    }
+
+    public boolean set(int index, int value) {
+        Node temp = get(index);
+
+        if (temp != null) {
+            temp.value = value;
+        }
+
+        return false;
+    }
+
+    public boolean insert(int index, int value) {
+        if (index < 0 || index > length ) return false;
+
+        if (index == 0) {
+            prepend(value);
+            return true;
+        }
+
+        if (index==length) {
+            append(value);
+            return true;
+        }
+
+        Node before = get(index - 1);
+        Node after = before.next;
+
+        Node temp = new Node(value);
+
+        before.next = temp;
+        after.prev = temp;
+
+        temp.prev = before;
+        temp.next = after;
+
+        length++;
+
+        return true;
     }
 
     public void printList() {
