@@ -1,20 +1,52 @@
 package datastructures.doublylinkedlist;
 
+/**
+ * Implementación de una Lista Enlazada Doble (Doubly Linked List)
+ *
+ * Una DoublyLinkedList es una estructura de datos lineal donde cada nodo
+ * contiene datos y referencias tanto al nodo siguiente como al nodo anterior.
+ * Esta característica permite navegación bidireccional.
+ *
+ * Características:
+ * - Navegación bidireccional
+ * - Acceso optimizado desde head o tail según proximidad
+ * - Eliminación eficiente sin necesidad de buscar nodo anterior
+ * - Implementación natural de Deque (cola de doble extremo)
+ *
+ * @author Luis Núñez
+ * @version 1.0
+ */
 public class DoublyLinkedList {
-    private Node head;
-    private Node tail;
-    private int length;
+    private Node head;   // Referencia al primer nodo de la lista
+    private Node tail;   // Referencia al último nodo de la lista
+    private int length;  // Número de elementos en la lista
 
+    /**
+     * Clase interna que representa un nodo de la lista enlazada doble
+     * Cada nodo contiene un valor y referencias al nodo siguiente y anterior
+     */
     class Node {
-        int value;
-        Node next;
-        Node prev;
+        int value;  // Dato almacenado en el nodo
+        Node next;  // Referencia al siguiente nodo
+        Node prev;  // Referencia al nodo anterior
 
+        /**
+         * Constructor del nodo
+         * @param value El valor a almacenar en el nodo
+         */
         public Node(int value) {
             this.value = value;
+            this.next = null;  // Inicialmente no hay siguiente nodo
+            this.prev = null;  // Inicialmente no hay nodo anterior
         }
     }
 
+    /**
+     * Constructor que crea una lista con un elemento inicial
+     * Complejidad: O(1)
+     *
+     * @param value El valor del primer elemento de la lista
+     */
     public DoublyLinkedList(int value) {
         Node newNode = new Node(value);
         head = newNode;
@@ -22,12 +54,20 @@ public class DoublyLinkedList {
         length = 1;
     }
 
+    /**
+     * Agrega un elemento al final de la lista
+     * Complejidad: O(1)
+     *
+     * @param value El valor a agregar al final de la lista
+     */
     public void append(int value) {
         Node newNode = new Node(value);
         if (length == 0) {
+            // Si la lista está vacía, el nuevo nodo es tanto head como tail
             head = newNode;
             tail = newNode;
         } else {
+            // Conectar el nuevo nodo al final y actualizar referencias
             tail.next = newNode;
             newNode.prev = tail;
             tail = newNode;
@@ -35,12 +75,19 @@ public class DoublyLinkedList {
         length++;
     }
 
+    /**
+     * Agrega un elemento al inicio de la lista
+     * Complejidad: O(1)
+     *
+     * @param value El valor a agregar al inicio de la lista
+     */
     public void prepend(int value) {
         Node newNode = new Node(value);
 
         if (length == 0) {
             append(value);
         } else {
+            // Conectar el nuevo nodo al inicio y actualizar referencias
             newNode.next = head;
             head.prev = newNode;
             head = newNode;
@@ -104,14 +151,24 @@ public class DoublyLinkedList {
 
     }
 
+    /**
+     * Obtiene el nodo en el índice especificado (optimizado)
+     * Complejidad: O(n/2) ≈ O(n) - optimizado para empezar desde head o tail
+     *
+     * @param index El índice del nodo a obtener (0-based)
+     * @return El nodo en el índice especificado, o null si el índice es inválido
+     */
     public Node get(int index) {
         if (index < 0 || index >= length) return null;
+
         Node temp = head;
         if (index < length / 2) {
+            // Si está en la primera mitad, empezar desde head
             for (int i = 0; i < index; i++) {
                 temp = temp.next;
             }
         } else {
+            // Si está en la segunda mitad, empezar desde tail
             temp = tail;
             for (int i = length - 1; i > index; i--) {
                 temp = temp.prev;
@@ -120,11 +177,20 @@ public class DoublyLinkedList {
         return temp;
     }
 
+    /**
+     * Modifica el valor del nodo en el índice especificado
+     * Complejidad: O(n/2) ≈ O(n) - debido a la llamada a get() optimizado
+     *
+     * @param index El índice del nodo a modificar
+     * @param value El nuevo valor para el nodo
+     * @return true si la modificación fue exitosa, false si el índice es inválido
+     */
     public boolean set(int index, int value) {
         Node temp = get(index);
 
         if (temp != null) {
             temp.value = value;
+            return true;
         }
 
         return false;
