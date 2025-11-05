@@ -22,7 +22,7 @@ public class LinkedList {
 
     /**
      * Clase interna que representa un nodo de la lista enlazada
-     * Cada nodo contiene un valor y una referencia al siguiente nodo
+     * Cada nodo contiene un valueor y una referencia al siguiente nodo
      */
     class Node {
         int value;  // Dato almacenado en el nodo
@@ -30,7 +30,7 @@ public class LinkedList {
 
         /**
          * Constructor del nodo
-         * @param value El valor a almacenar en el nodo
+         * @param value El valueor a almacenar en el nodo
          */
         public Node(int value) {
             this.value = value;
@@ -42,7 +42,7 @@ public class LinkedList {
      * Constructor que crea una lista con un elemento inicial
      * Complejidad: O(1)
      * 
-     * @param value El valor del primer elemento de la lista
+     * @param value El valueor del primer elemento de la lista
      */
     public LinkedList(int value) {
         Node newNode = new Node(value);
@@ -65,7 +65,7 @@ public class LinkedList {
      * Agrega un elemento al final de la lista
      * Complejidad: O(1)
      * 
-     * @param value El valor a agregar al final de la lista
+     * @param value El valueor a agregar al final de la lista
      */
     public void append(int value){
         Node newNode = new Node(value);
@@ -85,7 +85,7 @@ public class LinkedList {
      * Agrega un elemento al inicio de la lista
      * Complejidad: O(1)
      * 
-     * @param value El valor a agregar al inicio de la lista
+     * @param value El valueor a agregar al inicio de la lista
      */
     public void prepend(int value){
         Node newNode = new Node(value);
@@ -197,11 +197,11 @@ public class LinkedList {
     }
 
     /**
-     * Modifica el valor del nodo en el índice especificado
+     * Modifica el valueor del nodo en el índice especificado
      * Complejidad: O(n) - debido a la llamada a get()
      * 
      * @param index El índice del nodo a modificar
-     * @param value El nuevo valor para el nodo
+     * @param value El nuevo valueor para el nodo
      * @return true si la modificación fue exitosa, false si el índice es inválido
      */
     public boolean set(int index, int value){
@@ -218,7 +218,7 @@ public class LinkedList {
      * Complejidad: O(n) - debido a la búsqueda del nodo anterior
      * 
      * @param index El índice donde insertar el nuevo elemento
-     * @param value El valor del nuevo elemento
+     * @param value El valueor del nuevo elemento
      * @return true si la inserción fue exitosa, false si el índice es inválido
      */
     public boolean insert(int index, int value){
@@ -299,6 +299,31 @@ public class LinkedList {
         }
     }
 
+    public Node mergeTwoLists(Node list1, Node list2) {
+        Node dummy = new Node(-1);
+        Node current = dummy;
+
+        while(list1 != null && list2 != null) {
+            if (list1.value <= list2.value) {
+                current.next = list1;
+                list1 = list1.next;
+            } else {
+                current.next = list2;
+                list2 = list2.next;
+            }
+            current = current.next;
+        }
+
+        // Missing nodes cases
+        if (list1 != null) {
+            current.next = list1;
+        } else {
+            current.next = list2;
+        }
+
+        return dummy.next;
+    }
+
     /**
      * Verifica si la lista está vacía
      * Complejidad: O(1)
@@ -310,7 +335,7 @@ public class LinkedList {
     }
 
     /**
-     * Imprime el valor del primer nodo (head)
+     * Imprime el valueor del primer nodo (head)
      * Complejidad: O(1)
      */
     public void getHead() {
@@ -318,7 +343,7 @@ public class LinkedList {
     }
 
     /**
-     * Imprime el valor del último nodo (tail)
+     * Imprime el valueor del último nodo (tail)
      * Complejidad: O(1)
      */
     public void getTail() {
